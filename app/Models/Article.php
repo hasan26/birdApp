@@ -24,7 +24,8 @@ class Article extends Model
         'title',
         'image',
         'text',
-        'tag'
+        'tag',
+        'bundle_articles'
     ];
 
     /**
@@ -36,7 +37,8 @@ class Article extends Model
         'title' => 'string',
         'image' => 'string',
         'text' => 'string',
-        'tag' => 'string'
+        'tag' => 'string',
+        'bundle_articles'=> 'string'
     ];
 
     /**

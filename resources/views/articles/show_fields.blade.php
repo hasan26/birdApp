@@ -28,6 +28,12 @@
     <p>{!! $article->tag !!}</p>
 </div>
 
+<!-- Tag Field -->
+<div class="form-group">
+    {!! Form::label('bundle_articles', 'Bundle Articles:') !!}
+    <p>{!! $article->bundle_articles !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
