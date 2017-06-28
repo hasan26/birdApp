@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/home', 'HomeAPIController@index');
+Route::get('/tag', 'HomeAPIController@getAllTag');
+Route::get('tag/{id}', [
+    'uses' => 'HomeAPIController@getAllArticlesByTag'
+]);
+Route::get('/articles', 'HomeAPIController@getAllArticles');
+Route::get('articles/{id}', [
+    'uses' => 'HomeAPIController@getArticle'
+]);
