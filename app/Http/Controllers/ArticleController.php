@@ -126,6 +126,18 @@ class ArticleController extends AppBaseController
             return redirect(route('articles.index'));
         }
 
+        $bundleArray = json_decode($article->bundle_articles);
+
+        if (count($bundleArray) > 0){
+            $bundle_article_array= array();
+            foreach ($bundleArray as &$value) {
+                $tempArticle = $this->articleRepository->findWithoutFail($value);
+                array_push($bundle_article_array,[$tempArticle->id, $tempArticle->title]);
+            }
+            $article['artilce_bundle_data']= $bundle_article_array;
+
+        }
+
         return view('articles.edit')->with('article', $article);
     }
 

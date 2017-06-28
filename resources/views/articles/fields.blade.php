@@ -25,9 +25,14 @@
 <!-- Bundle Article Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('bundle_articles', 'Bundle Article:') !!}
-    {{--{!! Form::select('tag',$article['tag_data'], $article['tag'],['class' => 'form-control']) !!}--}}
-    {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Enter Title Articles' ,'class' => 'form-control'])}}
-
+    <div class="ui-autocomplete-multiselect ui-state-default ui-widget ui-state-active" style="width: 100%;">
+        @foreach($article['artilce_bundle_data'] as $value)
+            <div class="ui-autocomplete-multiselect-item" style="padding: 6px 12px;">{!! $value[1] !!}<span onclick="$(this).parent().remove();" class="ui-icon ui-icon-close"></span>
+                <input type="hidden" name="bundle_articles[]" value="{!! $value[0]!!}">
+            </div>
+        @endforeach
+        <input id="q" placeholder="Enter Title Articles" class="form-control ui-autocomplete-input" name="q" type="text" value="" autocomplete="off">
+    </div>
 </div>
 
 <!-- Submit Field -->
