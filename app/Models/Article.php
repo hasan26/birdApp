@@ -25,7 +25,8 @@ class Article extends Model
         'image',
         'text',
         'tag',
-        'bundle_articles'
+        'bundle_articles',
+        'is_banner'
     ];
 
     /**
@@ -38,7 +39,8 @@ class Article extends Model
         'image' => 'string',
         'text' => 'string',
         'tag' => 'string',
-        'bundle_articles'=> 'string'
+        'bundle_articles'=> 'string',
+        'is_banner'=>'boolean'
     ];
 
     /**

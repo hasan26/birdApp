@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddArtikelTerkaitOnArtclesTable extends Migration
+class AddBannerCheckbox extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddArtikelTerkaitOnArtclesTable extends Migration
     {
         Schema::table('articles', function($table)
         {
-            $table->string('bundle_articles');
+            $table->boolean('is_banner');
         });
     }
 
@@ -28,7 +28,7 @@ class AddArtikelTerkaitOnArtclesTable extends Migration
     {
         Schema::table('articles', function($table)
         {
-            $table->dropColumn('bundle_articles');
+            $table->boolean('is_banner');
         });
     }
 }

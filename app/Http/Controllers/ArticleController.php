@@ -69,6 +69,9 @@ class ArticleController extends AppBaseController
 
             }
         }
+        if (!isset($input['is_banner'])){
+            $input['is_banner'] = 0;
+        }
         $article = $this->articleRepository->create($input);
 
         Flash::success('Article saved successfully.');
@@ -127,6 +130,7 @@ class ArticleController extends AppBaseController
         }
 
         $bundleArray = json_decode($article->bundle_articles);
+        $article['artilce_bundle_data'] = array();
 
         if (count($bundleArray) > 0){
             $bundle_article_array= array();
@@ -165,8 +169,11 @@ class ArticleController extends AppBaseController
 
             return redirect(route('articles.index'));
         }
-
+        if (!isset($input['is_banner'])){
+            $input['is_banner'] = 0;
+        }
         $article = $this->articleRepository->update($input, $id);
+
 
         Flash::success('Article updated successfully.');
 
