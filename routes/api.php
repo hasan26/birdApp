@@ -26,3 +26,11 @@ Route::get('/articles', 'HomeAPIController@getAllArticles');
 Route::get('articles/{id}', [
     'uses' => 'HomeAPIController@getArticle'
 ]);
+Route::get('/news', 'HomeAPIController@getAllnews');
+
+Route::post('/register', 'HomeAPIController@registerUser');
+Route::post('/login', 'HomeAPIController@login');
+
+Route::group(['middleware' => 'jwt-auth'], function () {
+    Route::post('/scedule', 'HomeAPIController@makeScedule');
+});

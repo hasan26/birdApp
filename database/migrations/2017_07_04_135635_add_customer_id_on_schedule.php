@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBannerCheckbox extends Migration
+class AddCustomerIdOnSchedule extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddBannerCheckbox extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function($table)
-        {
-            $table->boolean('is_banner');
+        Schema::table('schedules', function (Blueprint $table) {
+            $table->integer('customer_id');
         });
     }
 
@@ -26,9 +25,8 @@ class AddBannerCheckbox extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function($table)
-        {
-            $table->dropColumn('is_banner');
+        Schema::table('schedules', function (Blueprint $table) {
+            $table->dropColumn('customer_id');
         });
     }
 }

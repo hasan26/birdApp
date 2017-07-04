@@ -25,3 +25,9 @@ Route::resource('articles', 'ArticleController');
 Route::any('autocomplete', 'ArticleController@autocomplete');
 
 Route::resource('tags', 'TagController');
+
+Route::resource('news', 'NewsController');
+
+Route::resource('customers', 'CustomerController');
+
+Route::resource('schedules', 'ScheduleController');
