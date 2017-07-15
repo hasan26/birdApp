@@ -7,6 +7,7 @@ use App\Repositories\ArticleRepository;
 use App\Repositories\NewsRepository;
 use App\Repositories\TagRepository;
 use App\Models\Article;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Repositories\CustomerRepository;
 use App\Repositories\ScheduleRepository;
@@ -98,8 +99,14 @@ class HomeAPIController extends AppBaseController{
         $input = $request->all();
 
         $customer = $this->customerRepository->create($input);
+        $token = JWTAuth::fromUser($customer);
 
-        return response()->json($customer);
+        $metha = array(
+            'user' => $customer,
+            'token' => $token
+        );
+
+        return response()->json($metha);
     }
 
     public function login(Request $request){
@@ -119,6 +126,7 @@ class HomeAPIController extends AppBaseController{
             $token = JWTAuth::fromUser($customer);
 
             $metha = array(
+                'user' => $customer,
                 'token' => $token
             );
         }
@@ -136,6 +144,40 @@ class HomeAPIController extends AppBaseController{
 
         return response()->json(['result' => $schedule]);
 
+    }
+
+    public function getScedule(Request $request){
+        $input = $request->all();
+        $token = $input['token'];
+        $user = $this->getUserDetail($token);
+        $schedules = $this->scheduleRepository->findByField('customer_id',$user->id,$columns = ['*']);
+
+        return response()->json(['result' => $schedules]);
+
+    }
+
+    public function removeSchedule($id){
+        $schedule = $this->scheduleRepository->findWithoutFail($id);
+        if (empty($schedule)) {
+
+            return response()->json(['result' => 'schedule not found']);
+        }
+        $this->scheduleRepository->delete($id);
+
+        return response()->json(['result' => 'delete success']);
+    }
+
+    public function completeSchedule($id){
+        $schedule = Schedule::find($id);
+        if (empty($schedule)) {
+
+            return response()->json(['result' => 'schedule not found']);
+        }
+
+        $schedule->status = 1;
+        $schedule->save();
+
+        return response()->json(['result' => 'update success']);
     }
 
     private function getUserDetail($token){

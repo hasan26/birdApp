@@ -32,5 +32,14 @@ Route::post('/register', 'HomeAPIController@registerUser');
 Route::post('/login', 'HomeAPIController@login');
 
 Route::group(['middleware' => 'jwt-auth'], function () {
-    Route::post('/scedule', 'HomeAPIController@makeScedule');
+    Route::post('/schedule', 'HomeAPIController@makeScedule');
+    Route::post('/schedule/list', 'HomeAPIController@getScedule');
 });
+
+Route::get('schedule/{id}', [
+    'uses' => 'HomeAPIController@removeSchedule'
+]);
+
+Route::get('schedule/{id}/complete', [
+    'uses' => 'HomeAPIController@completeSchedule'
+]);
