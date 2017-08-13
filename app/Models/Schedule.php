@@ -26,6 +26,7 @@ class Schedule extends Model
         'do_date',
         'status',
         'customer_id',
+        'event_id'.
     ];
 
     /**
@@ -39,6 +40,7 @@ class Schedule extends Model
         'do_date' => 'date',
         'status' => 'integer',
         'customer_id'=>'integer'
+        'event_id'=>'integer'
     ];
 
     /**
