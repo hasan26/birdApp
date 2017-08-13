@@ -49,6 +49,7 @@ class ArticleController extends AppBaseController
     {
         $article['tag_data']=$this->getAllTag();
         $article['tag']=1;
+        $article['artilce_bundle_data'] = [];
 
         return view('articles.create')->with('article', $article);;
     }
