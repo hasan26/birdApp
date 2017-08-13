@@ -26,7 +26,7 @@ class Schedule extends Model
         'do_date',
         'status',
         'customer_id',
-        'event_id'.
+        'event_id',
     ];
 
     /**
