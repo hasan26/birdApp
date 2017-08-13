@@ -39,7 +39,7 @@ class Schedule extends Model
         'description' => 'string',
         'do_date' => 'date',
         'status' => 'integer',
-        'customer_id'=>'integer'
+        'customer_id'=>'integer',
         'event_id'=>'integer'
     ];
 
